@@ -1,8 +1,6 @@
 import axios from "axios";
-import {useContext} from 'react';
 import { AppCostants } from "../core/utils/app_constants";
 import { AuthRepository } from "../core/domain/repositories/auth_repository";
-import { User } from "../core/domain/model/user_model";
 import { LoginResponse, SignUpResponse } from "../core/domain/model/authentication_response_model";
 import {storeValue} from '../core/local_storage/storage';
 

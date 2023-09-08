@@ -12,7 +12,7 @@ export const userToken = createContext<StoreDeviceToken>({
 type Props = {
     children: React.ReactNode,
 }
-function Provider({ children }: Props) {
+function ProviderContext({ children }: Props) {
     const [storeToken, setStoreToken] = useState<string>();
     function getToken(token: string) {
         setStoreToken(token);
@@ -24,4 +24,4 @@ function Provider({ children }: Props) {
         {children}
     </userToken.Provider>
 }
-export default Provider;
+export default ProviderContext;

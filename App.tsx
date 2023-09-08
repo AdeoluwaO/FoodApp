@@ -8,7 +8,6 @@
 
 import React, { useContext } from 'react';
 import {
-  SafeAreaView,
   StatusBar,
 } from 'react-native';
 
@@ -26,7 +25,7 @@ import SignUpScreen from './src/features/auth/signup_screen';
 import { getValue } from './src/core/local_storage/storage';
 import EncryptedStorage from 'react-native-encrypted-storage';
 import { userToken } from './src/core/local_storage/context';
-import Provider from './src/core/local_storage/context';
+import ProviderContext from './src/core/local_storage/context';
 export type AuthStack = {
   Onboarding: undefined;
   Login: undefined;
@@ -45,15 +44,21 @@ function App(): JSX.Element {
   const token = useContext(userToken);
   function DashBoardScreens() {
     return (
-      <Tab.Navigator screenOptions={{
+      <Tab.Navigator  screenOptions={{
         headerShown: false,
+        tabBarShowLabel: false,
+        tabBarActiveTintColor: AppColors.opacOrange,
+        tabBarActiveBackgroundColor: AppColors.opacOrange,
         tabBarStyle: {
           backgroundColor: AppColors.lightGrey
         }
       }}>
         <Tab.Screen
           options={{
-            title: 'Profile'
+            title: 'Profile',
+            tabBarIcon: () => {
+              return <Icon name="person-outline" size={24} color="black" />
+            }
           }}
           name='Profile'
           component={ProfileScreen} />
@@ -68,7 +73,10 @@ function App(): JSX.Element {
           component={HomeScreen} />
         <Tab.Screen
           options={{
-            title: 'Favourite'
+            title: 'Favourite',
+            tabBarIcon: () => {
+              return <Icon name="heart-outline" size={24} color="black" />
+            }
           }}
           name='Favourite'
           component={FavouriteScreen} />
@@ -82,7 +90,7 @@ function App(): JSX.Element {
     <>
 
       <StatusBar hidden />
-
+    
       <NavigationContainer>
         <Stack.Navigator screenOptions={{
           headerShown: false
@@ -93,7 +101,6 @@ function App(): JSX.Element {
           <Stack.Screen name='Home' component={DashBoardScreens} />
         </Stack.Navigator>
       </NavigationContainer>
-
     </>
   );
 }

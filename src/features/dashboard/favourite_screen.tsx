@@ -2,11 +2,10 @@ import { Dimensions, Image, ScrollView, StatusBar, SafeAreaView, StyleSheet, Tex
 import { AppColors } from "../../core/utils/app_colors";
 import LinearGradient from "react-native-linear-gradient";
 import { AppLogo, CustomButton } from '../../shared_components/shared_components_exports';
-import { AuthStack } from "../../../App";
-import type {StackScreenProps} from '@react-navigation/stack';
-import { useNavigation } from '@react-navigation/native';
+import {  Dashboard } from "../../../App";
+import { BottomTabScreenProps } from "@react-navigation/bottom-tabs";
 
-type Props =  StackScreenProps<AuthStack, 'Onboarding'>;
+type Props =  BottomTabScreenProps<Dashboard, 'Favourite'>;
 
 
 const { height } = Dimensions.get('window');
@@ -22,13 +21,6 @@ function FavouriteScreen({navigation}: Props) {
             }}>
                 <AppLogo />
                 <Text style={style.titleText} >Favourite</Text>
-                <CustomButton
-                    styles={{ position: 'absolute', bottom: 20, zIndex: 7, alignSelf: 'center' }}
-                    title='Get Started'
-                    onPress={() => {
-                        navigation.navigate('Login')
-                    }}
-                    />
                 <Image
                     style={{ zIndex: 2, right: 32, top: 30, transform: [{ scale: 1 }] }}
                     source={require('../../../assets/images/png/female.png')} />

@@ -1,59 +1,64 @@
-import { Dimensions, Image, ScrollView, StatusBar, SafeAreaView, StyleSheet, Text, View } from "react-native";
+import { Dimensions, StyleSheet, View, Image, ScrollView, Text } from "react-native";
 import { AppColors } from "../../core/utils/app_colors";
-import LinearGradient from "react-native-linear-gradient";
-import { AppLogo, CustomButton } from '../../shared_components/shared_components_exports';
-import { AuthStack } from "../../../App";
-import type {StackScreenProps} from '@react-navigation/stack';
-import { useNavigation } from '@react-navigation/native';
+import { CustomButton, ViewBox } from '../../shared_components/shared_components_exports';
+import { Dashboard } from "../../../App";
+import { BottomTabScreenProps } from "@react-navigation/bottom-tabs";
 
-type Props =  StackScreenProps<AuthStack, 'Onboarding'>;
+type Props = BottomTabScreenProps<Dashboard, 'Profile'>;
 
 
-const { height } = Dimensions.get('window');
-function ProfileScreen({navigation}: Props) {
+const { height, width } = Dimensions.get('window');
+function ProfileScreen({ navigation }: Props) {
     return (
-        <ScrollView showsVerticalScrollIndicator={false}>
-            <SafeAreaView>
-            <View style={{
-                backgroundColor: AppColors.red,
-                height,
-                paddingVertical: StatusBar.currentHeight,
-                paddingHorizontal: 16
-            }}>
-                <AppLogo />
-                <Text style={style.titleText} >Profile</Text>
-                <CustomButton
-                    styles={{ position: 'absolute', bottom: 20, zIndex: 7, alignSelf: 'center' }}
-                    title='Get Started'
-                    onPress={() => {
-                        navigation.navigate('Login')
-                    }}
-                    />
-                <Image
-                    style={{ zIndex: 2, right: 32, top: 30, transform: [{ scale: 1 }] }}
-                    source={require('../../../assets/images/png/female.png')} />
-                <Image
-                    style={{ left: 160, bottom: 300}}
-                    source={require('../../../assets/images/png/male.png')} />
-                <LinearGradient
-                    start={{ x: 30, y: 500 }} end={{ x: 234, y: 242 }}
-                    style={{ flex: 1 }}
-                    colors={['red', 'green']}>
-                </LinearGradient>
+
+        <ScrollView>
+            <View style={styles.container}>
+                <View style={styles.profileImage}>
+
+                    {/* <Image src='../'  /> */}
+                </View>
+                <View style={styles.textContainer}>
+
+                <Text style={styles.titleText}>EMAIL</Text>
+                <Text style={styles.subTitleText}>email</Text>
+                <Text style={styles.titleText}>FIRST NAME </Text>
+                <Text style={styles.subTitleText}>First Name </Text>
+                <Text style={styles.titleText}>LAST NAME</Text>
+                <Text style={styles.subTitleText}>Last Name</Text>
+                </View>
             </View>
-            </SafeAreaView>
         </ScrollView>
+
     );
 }
 
 export default ProfileScreen;
 
 
-const style = StyleSheet.create({
+const styles = StyleSheet.create({
+    container: {
+        gap: 10,
+    },
+    profileImage: {
+    width,
+    backgroundColor: AppColors.opacGrey,
+    height: height * 0.5,
+    borderBottomRightRadius: 50,
+    },
     titleText: {
         fontWeight: '800',
-        fontSize: 65,
+        fontSize: 25,
         fontFamily: 'SF-Pro-Rounded-Regular',
-        color: AppColors.white
+        color: AppColors.opacOrange
+    },
+    subTitleText: {
+        fontWeight: '400',
+        fontSize: 18,
+        fontFamily: 'SF-Pro-Rounded-Regular',
+        color: AppColors.orange
+    },
+    textContainer: {
+        gap: 20,
+        paddingHorizontal: 16
     }
 });

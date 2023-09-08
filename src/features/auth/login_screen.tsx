@@ -50,11 +50,11 @@ function LoginScreen({ navigation }: LoginScreenParams) {
                 title='Submit' 
                 styles={{ alignSelf: 'center' }} 
                 onPress={() => {
-                    authImp.loginUser("eve.holt@reqres.in", "cityslicka");
+                    // authImp.loginUser("eve.holt@reqres.in", "cityslicka");
                     setEmail(''),
                     setPassword('')
                     // getValue({key: 'token'})
-                    // navigation.navigate('Home');
+                    navigation.navigate('Home');
                 }} />
             </ViewBox>
         </ScrollView>

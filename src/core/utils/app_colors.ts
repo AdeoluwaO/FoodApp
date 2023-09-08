@@ -8,5 +8,6 @@ export class AppColors {
     static black = '#000000';
     static orange = '#FA4A0C';
     static opacRed = 'rgba(255, 71, 11, 0.51)';
-   static darkerRed = ' rgba(255, 71, 11, 1)'
+   static darkerRed = ' rgba(255, 71, 11, 1)';
+   static opacOrange = 'rgba(215, 56, 0, 0.4)'
 }
