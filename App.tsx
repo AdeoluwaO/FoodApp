@@ -6,7 +6,7 @@
  */
 
 
-import React, {useContext} from 'react';
+import React, { useContext } from 'react';
 import {
   SafeAreaView,
   StatusBar,
@@ -23,11 +23,12 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import { AppColors } from './src/core/utils/utils_exports';
 import FavouriteScreen from './src/features/dashboard/favourite_screen';
 import SignUpScreen from './src/features/auth/signup_screen';
-import {getValue} from './src/core/local_storage/storage';
+import { getValue } from './src/core/local_storage/storage';
 import EncryptedStorage from 'react-native-encrypted-storage';
 import { userToken } from './src/core/local_storage/context';
 import Provider from './src/core/local_storage/context';
 export type AuthStack = {
+  Onboarding: undefined;
   Login: undefined;
   SignUp: undefined;
   Home: undefined
@@ -56,15 +57,15 @@ function App(): JSX.Element {
           }}
           name='Profile'
           component={ProfileScreen} />
-          <Tab.Screen
-            options={{
-              title: 'Home',
-              tabBarIcon: () => {
-                return <Icon name="home-outline" size={24} color="black" />
-              }
-            }}
-            name='Home'
-            component={HomeScreen} />
+        <Tab.Screen
+          options={{
+            title: 'Home',
+            tabBarIcon: () => {
+              return <Icon name="home-outline" size={24} color="black" />
+            }
+          }}
+          name='Home'
+          component={HomeScreen} />
         <Tab.Screen
           options={{
             title: 'Favourite'
@@ -74,28 +75,25 @@ function App(): JSX.Element {
       </Tab.Navigator>
     );
   }
- async  function getToken() {
-  return  await EncryptedStorage.getItem('token')
+  async function getToken() {
+    return await EncryptedStorage.getItem('token')
   }
   return (
     <>
-    <Provider>
+
       <StatusBar hidden />
-      {
-        token !== undefined ? <Onboarding /> : 
-        
+
       <NavigationContainer>
-      <Stack.Navigator screenOptions={{
-        headerShown: false
-      }}>
-        {/* <Stack.Screen name='Onboarding' component={Onboarding} /> */}
-        <Stack.Screen name='Login' component={LoginScreen} />
-        <Stack.Screen name='SignUp' component={SignUpScreen} />
-        <Stack.Screen name='Home' component={DashBoardScreens} />
-      </Stack.Navigator>
-    </NavigationContainer>
-      }
-      </Provider>
+        <Stack.Navigator screenOptions={{
+          headerShown: false
+        }}>
+          <Stack.Screen name='Onboarding' component={Onboarding} />
+          <Stack.Screen name='Login' component={LoginScreen} />
+          <Stack.Screen name='SignUp' component={SignUpScreen} />
+          <Stack.Screen name='Home' component={DashBoardScreens} />
+        </Stack.Navigator>
+      </NavigationContainer>
+
     </>
   );
 }

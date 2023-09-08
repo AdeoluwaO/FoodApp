@@ -6,9 +6,10 @@ import { AuthStack } from "../../../App";
 import type {StackScreenProps} from '@react-navigation/stack';
 import { useNavigation } from '@react-navigation/native';
 
+type Onboarding = StackScreenProps<AuthStack, 'Onboarding'>;
 
 const { height } = Dimensions.get('window');
-function Onboarding() {
+function Onboarding({navigation}: Onboarding) {
     return (
         <ScrollView showsVerticalScrollIndicator={false}>
             <SafeAreaView>
@@ -24,6 +25,7 @@ function Onboarding() {
                     styles={{ position: 'absolute', bottom: 20, zIndex: 7, alignSelf: 'center' }}
                     title='Get Started'
                     onPress={() => {
+                        navigation.navigate('Login')
                     }}
                     />
                 <Image
