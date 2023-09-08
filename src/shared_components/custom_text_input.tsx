@@ -5,7 +5,7 @@ import { Text, TextInputProps  } from 'react-native';
 
 const { width, height } = Dimensions.get('window');
 type TextInputParams = {
-    title: string,
+    title?: string,
     textInputConfig: TextInputProps,
     containerStyle?: StyleProp<ViewStyle>
 }

@@ -1,14 +1,27 @@
-import {createContext} from 'react';
+import { createContext, useState } from 'react';
 
-export const userToken = createContext<string | undefined>(undefined);
+type StoreDeviceToken = {
+    token: string | undefined,
+    getToken: (token: string) => void
+}
+export const userToken = createContext<StoreDeviceToken>({
+    token: undefined,
+    getToken(token) { },
+});
 
 type Props = {
     children: React.ReactNode,
-    token: string | undefined
 }
-
-function Provider({children, token}: Props) {
-    <userToken.Provider value={token}>
+function Provider({ children }: Props) {
+    const [storeToken, setStoreToken] = useState<string>();
+    function getToken(token: string) {
+        setStoreToken(token);
+    }
+    <userToken.Provider value={{
+        token: storeToken,
+        getToken
+    }}>
         {children}
     </userToken.Provider>
 }
+export default Provider;

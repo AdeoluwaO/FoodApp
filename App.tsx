@@ -26,6 +26,7 @@ import SignUpScreen from './src/features/auth/signup_screen';
 import {getValue} from './src/core/local_storage/storage';
 import EncryptedStorage from 'react-native-encrypted-storage';
 import { userToken } from './src/core/local_storage/context';
+import Provider from './src/core/local_storage/context';
 export type AuthStack = {
   Login: undefined;
   SignUp: undefined;
@@ -78,6 +79,7 @@ function App(): JSX.Element {
   }
   return (
     <>
+    <Provider>
       <StatusBar hidden />
       {
         token !== undefined ? <Onboarding /> : 
@@ -93,6 +95,7 @@ function App(): JSX.Element {
       </Stack.Navigator>
     </NavigationContainer>
       }
+      </Provider>
     </>
   );
 }
